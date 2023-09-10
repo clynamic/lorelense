@@ -218,71 +218,74 @@ class ProjectDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FullProject? project = this.project;
-    return switch (state) {
-      LoadingState.done => Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              project!.description,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              children: [
-                if (project.website != null)
-                  ProjectProperty(
-                    label: Text(Uri.parse(project.website!).host),
-                    icon: const Icon(Icons.link),
-                  ),
-                if (project.language != null)
-                  ProjectProperty(
-                    label: Text(project.language!),
-                    icon: const Icon(Icons.code),
-                  ),
-                if (project is GithubProject) ...[
-                  ProjectProperty(
-                    label: Text('${project.stars} stars'),
-                    icon: const Icon(Icons.star),
-                  ),
-                  ProjectProperty(
-                    label: Text(
-                      RelativeTime.locale(const Locale('en')).format(
-                        DateTime.parse(project.lastCommit),
-                      ),
-                    ),
-                    icon: const Icon(Icons.access_time),
-                  ),
-                ],
-              ],
-            )
-          ],
-        ),
-      LoadingState.loading => Shimmer.fromColors(
-          baseColor: Theme.of(context).cardColor,
-          highlightColor: Theme.of(context).cardColor.withOpacity(0.2),
-          child: Column(
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 200),
+      child: switch (state) {
+        LoadingState.done => Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 16,
-                color: Colors.white,
+              Text(
+                project!.description,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 8),
-              Container(
-                height: 16,
-                color: Colors.white,
-              ),
+              Wrap(
+                children: [
+                  if (project.website != null)
+                    ProjectProperty(
+                      label: Text(Uri.parse(project.website!).host),
+                      icon: const Icon(Icons.link),
+                    ),
+                  if (project.language != null)
+                    ProjectProperty(
+                      label: Text(project.language!),
+                      icon: const Icon(Icons.code),
+                    ),
+                  if (project is GithubProject) ...[
+                    ProjectProperty(
+                      label: Text('${project.stars} stars'),
+                      icon: const Icon(Icons.star),
+                    ),
+                    ProjectProperty(
+                      label: Text(
+                        RelativeTime.locale(const Locale('en')).format(
+                          DateTime.parse(project.lastCommit),
+                        ),
+                      ),
+                      icon: const Icon(Icons.access_time),
+                    ),
+                  ],
+                ],
+              )
             ],
           ),
-        ),
-      LoadingState.error => Center(
-          child: Icon(
-            Icons.error,
-            color: Theme.of(context).colorScheme.error,
+        LoadingState.loading => Shimmer.fromColors(
+            baseColor: Theme.of(context).cardColor,
+            highlightColor: Theme.of(context).cardColor.withOpacity(0.2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 16,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  height: 16,
+                  color: Colors.white,
+                ),
+              ],
+            ),
           ),
-        ),
-    };
+        LoadingState.error => Center(
+            child: Icon(
+              Icons.error,
+              color: Theme.of(context).colorScheme.error,
+            ),
+          ),
+      },
+    );
   }
 }
 
