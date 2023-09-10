@@ -84,15 +84,17 @@ class Home extends StatelessWidget {
       if (constraints.maxWidth > 1000) {
         left.addAll(tiles);
         right.add(
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32),
-                child: VerticalDivider(),
-              ),
-              Expanded(child: Profile(user: user)),
-            ],
+          const IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  child: VerticalDivider(),
+                ),
+                Expanded(child: Profile(user: user)),
+              ],
+            ),
           ),
         );
       } else {
