@@ -1,3 +1,4 @@
+import 'package:boxy/boxy.dart';
 import 'package:clynamic/banner.dart';
 import 'package:clynamic/clipboard.dart';
 import 'package:clynamic/gravatar.dart';
@@ -96,59 +97,80 @@ class ProfileHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return CustomBoxy(
+      delegate: ProfileHeadDelegate(),
       children: [
-        Stack(
-          fit: StackFit.passthrough,
-          clipBehavior: Clip.none,
-          children: [
-            ClipRRect(
-              child: Stack(
-                fit: StackFit.passthrough,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 160,
-                          child: Opacity(
-                            opacity: 0.9,
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(4)),
-                              child: BannerImage(
-                                image: AssetImage(assets.header),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+        BoxyId(
+          id: #banner,
+          child: SizedBox(
+            height: 160,
+            width: double.infinity,
+            child: Opacity(
+              opacity: 0.9,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(4)),
+                child: BannerImage(
+                  image: AssetImage(assets.header),
+                ),
               ),
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: -36,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: SizedBox.fromSize(
-                      size: const Size.square(80),
-                      child: GravatarImage(email: user.email),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-        const SizedBox(height: 36),
+        BoxyId(
+          id: #avatar,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: SizedBox.fromSize(
+              size: const Size.square(80),
+              child: GravatarImage(email: user.email),
+            ),
+          ),
+        ),
       ],
     );
+  }
+}
+
+class ProfileHeadDelegate extends BoxyDelegate {
+  @override
+  Size layout() {
+    final banner = getChild(#banner);
+    final avatar = getChild(#avatar);
+
+    final avatarSize = avatar.layout(constraints);
+
+    final bannerSize = banner.layout(
+      constraints.copyWith(
+        minHeight: avatarSize.height,
+      ),
+    );
+    banner.position(Offset.zero);
+
+    double halfAvatarHeight = avatarSize.height / 2;
+
+    avatar.position(
+      Offset(
+        0,
+        bannerSize.height - halfAvatarHeight,
+      ),
+    );
+
+    return Size(
+      bannerSize.width,
+      bannerSize.height + halfAvatarHeight,
+    );
+  }
+
+  @override
+  double maxIntrinsicHeight(double width) {
+    final banner = getChild(#banner);
+    final avatar = getChild(#avatar);
+
+    final avatarHeight = avatar.render.getMaxIntrinsicHeight(width);
+    final bannerHeight = banner.render.getMaxIntrinsicHeight(width);
+    double halfAvatarHeight = avatarHeight / 2;
+
+    return bannerHeight + halfAvatarHeight;
   }
 }
 
