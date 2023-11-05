@@ -22,6 +22,12 @@ class BannerImage extends StatelessWidget {
           )
         ],
       ),
+      errorBuilder: (context, error, stackTrace) => Center(
+        child: Icon(
+          Icons.error,
+          color: Theme.of(context).colorScheme.error,
+        ),
+      ),
     );
   }
 }

@@ -1,31 +1,13 @@
 import 'package:boxy/boxy.dart';
-import 'package:clynamic/banner.dart';
-import 'package:clynamic/clipboard.dart';
-import 'package:clynamic/gravatar.dart';
-import 'package:clynamic/info.dart';
-import 'package:clynamic/quotes.dart';
+import 'package:clynamic/app/banner.dart';
+import 'package:clynamic/app/info.dart';
+import 'package:clynamic/user/clipboard.dart';
+import 'package:clynamic/user/gravatar.dart';
+import 'package:clynamic/user/quotes.dart';
+import 'package:clynamic/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-@immutable
-class User {
-  const User({
-    required this.name,
-    required this.email,
-    required this.pronouns,
-    required this.bio,
-    required this.discord,
-    required this.github,
-  });
-
-  final String name;
-  final String email;
-  final String pronouns;
-  final String bio;
-  final String? discord;
-  final String? github;
-}
 
 class Profile extends StatelessWidget {
   const Profile({
@@ -40,23 +22,29 @@ class Profile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const ProfileHead(),
+        ProfileHead(user: user),
         const SizedBox(height: 12),
         SelectionArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 user.name,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(height: 2),
-              Text(
-                user.pronouns,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const SizedBox(height: 12),
-              Text(user.bio),
+              if (user.pronouns case final pronouns?) ...[
+                const SizedBox(height: 2),
+                Text(
+                  pronouns,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+              if (user.bio case final bio?)
+                if (bio.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(bio),
+                ],
             ],
           ),
         ),
@@ -70,14 +58,14 @@ class Profile extends StatelessWidget {
           username: user.email,
           type: SocialLinkType.email,
         ),
-        if (user.github != null)
+        if (user.github case final github?)
           SocialLink(
-            username: user.github!,
+            username: github,
             type: SocialLinkType.github,
           ),
-        if (user.discord != null)
+        if (user.discord case final discord?)
           SocialLink(
-            username: user.discord!,
+            username: discord,
             type: SocialLinkType.discord,
           ),
         const SizedBox(height: 24),
@@ -93,7 +81,12 @@ class Profile extends StatelessWidget {
 }
 
 class ProfileHead extends StatelessWidget {
-  const ProfileHead({super.key});
+  const ProfileHead({
+    super.key,
+    required this.user,
+  });
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +103,7 @@ class ProfileHead extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(4)),
                 child: BannerImage(
+                  // TODO: store header per user
                   image: AssetImage(assets.header),
                 ),
               ),

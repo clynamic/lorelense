@@ -1,12 +1,11 @@
-import 'package:clynamic/assets.dart';
-import 'package:clynamic/profile.dart';
-import 'package:clynamic/project.dart';
+import 'package:clynamic/app/assets.dart';
 
 const Assets assets = Assets(
   appIcon: 'assets/logo.png',
   header: 'assets/banner.png',
 );
 
+/*
 const User user = User(
   name: 'dragon',
   email: 'clragon@clynamic.net',
@@ -18,11 +17,4 @@ const User user = User(
   discord: 'clragon#0001',
   github: 'clragon',
 );
-
-const List<Project> projects = [
-  RemoteProject(
-    title: 'e1547',
-    url: 'clragon/e1547',
-    type: ProjectType.github,
-  ),
-];
+*/

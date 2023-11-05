@@ -1,4 +1,4 @@
-import 'package:clynamic/alert.dart';
+import 'package:clynamic/app/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
