@@ -10,6 +10,13 @@ class TwoPieceLayout extends StatelessWidget {
   final List<Widget> primary;
   final List<Widget> secondary;
 
+  static bool isCombined(BuildContext context) {
+    final data =
+        context.dependOnInheritedWidgetOfExactType<_TwoPieceLayoutData>();
+    if (data == null) throw Exception('No TwoPieceLayout found in context');
+    return data.isCombined;
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -17,7 +24,19 @@ class TwoPieceLayout extends StatelessWidget {
         List<Widget> left = [];
         List<Widget> right = [];
 
-        if (constraints.maxWidth > 1000) {
+        bool isCombined = constraints.maxWidth < 1000;
+
+        if (isCombined) {
+          left.addAll([
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...primary,
+              ],
+            ),
+            ...secondary,
+          ]);
+        } else {
           left.addAll(secondary);
           right.add(
             IntrinsicHeight(
@@ -33,38 +52,44 @@ class TwoPieceLayout extends StatelessWidget {
               ),
             ),
           );
-        } else {
-          left.addAll([
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...primary,
-              ],
-            ),
-            ...secondary,
-          ]);
         }
 
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: left,
-              ),
-            ),
-            if (right.isNotEmpty)
-              SizedBox(
-                width: constraints.maxWidth > 1400 ? 600 : 420,
+        return _TwoPieceLayoutData(
+          isCombined: isCombined,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: right,
+                  children: left,
                 ),
               ),
-          ],
+              if (right.isNotEmpty)
+                SizedBox(
+                  width: constraints.maxWidth > 1400 ? 600 : 420,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: right,
+                  ),
+                ),
+            ],
+          ),
         );
       },
     );
   }
+}
+
+class _TwoPieceLayoutData extends InheritedWidget {
+  const _TwoPieceLayoutData({
+    required this.isCombined,
+    required super.child,
+  });
+
+  final bool isCombined;
+
+  @override
+  bool updateShouldNotify(covariant _TwoPieceLayoutData oldWidget) =>
+      isCombined != oldWidget.isCombined;
 }

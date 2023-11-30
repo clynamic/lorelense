@@ -197,21 +197,26 @@ class _HomeState extends State<Home> {
                             ),
                         ],
                         secondary: [
-                          // Only show this if we are in the single column layout
-                          /*
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 16),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Projects',
-                                  style: Theme.of(context).textTheme.titleLarge,
+                          Builder(builder: (context) {
+                            if (TwoPieceLayout.isCombined(context)) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Projects',
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          */
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          }),
                           if (projectsError)
                             ErrorIcon(
                               child: Text(
