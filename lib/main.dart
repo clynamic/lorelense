@@ -8,15 +8,8 @@ import 'package:dotenv/dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-GlobalKey<AlertState> _alerts = GlobalKey<AlertState>();
-
 void main() {
   setPathUrlStrategy();
-  registerFlutterErrorHandler(
-    (error, trace) => _alerts.currentState?.add(
-      Alert.error(message: Text(error.toString())),
-    ),
-  );
   runApp(const App());
 }
 
@@ -29,12 +22,19 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   static const String defaultHost = 'http://localhost:8080';
+  final GlobalKey<AlertState> _alerts = GlobalKey<AlertState>();
   late RestClient client;
 
   @override
   void initState() {
     super.initState();
-    final env = DotEnv();
+    registerFlutterErrorHandler(
+      (error, trace) => _alerts.currentState?.add(
+        Alert.error(message: Text(error.toString())),
+      ),
+    );
+
+    DotEnv env = DotEnv();
     env.load();
     client = RestClient(
       Dio(
