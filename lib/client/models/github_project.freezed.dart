@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'project.dart';
+part of 'github_project.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,16 +20,16 @@ GithubProject _$GithubProjectFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GithubProject {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get owner => throw _privateConstructorUsedError;
-  String get repo => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  int get stars => throw _privateConstructorUsedError;
-  DateTime get lastCommit => throw _privateConstructorUsedError;
-  String? get homepage => throw _privateConstructorUsedError;
-  String? get language => throw _privateConstructorUsedError;
   String? get banner => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get homepage => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  DateTime? get lastCommit => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String? get owner => throw _privateConstructorUsedError;
+  String? get repo => throw _privateConstructorUsedError;
+  int get stars => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,16 +44,16 @@ abstract class $GithubProjectCopyWith<$Res> {
       _$GithubProjectCopyWithImpl<$Res, GithubProject>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String owner,
-      String repo,
+      {String? banner,
       String? description,
-      int stars,
-      DateTime lastCommit,
       String? homepage,
+      int id,
       String? language,
-      String? banner});
+      DateTime? lastCommit,
+      String name,
+      String? owner,
+      String? repo,
+      int stars});
 }
 
 /// @nodoc
@@ -69,58 +69,58 @@ class _$GithubProjectCopyWithImpl<$Res, $Val extends GithubProject>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? owner = null,
-    Object? repo = null,
-    Object? description = freezed,
-    Object? stars = null,
-    Object? lastCommit = null,
-    Object? homepage = freezed,
-    Object? language = freezed,
     Object? banner = freezed,
+    Object? description = freezed,
+    Object? homepage = freezed,
+    Object? id = null,
+    Object? language = freezed,
+    Object? lastCommit = freezed,
+    Object? name = null,
+    Object? owner = freezed,
+    Object? repo = freezed,
+    Object? stars = null,
   }) {
     return _then(_value.copyWith(
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homepage: freezed == homepage
+          ? _value.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastCommit: freezed == lastCommit
+          ? _value.lastCommit
+          : lastCommit // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: null == owner
+      owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as String,
-      repo: null == repo
+              as String?,
+      repo: freezed == repo
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       stars: null == stars
           ? _value.stars
           : stars // ignore: cast_nullable_to_non_nullable
               as int,
-      lastCommit: null == lastCommit
-          ? _value.lastCommit
-          : lastCommit // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      homepage: freezed == homepage
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      banner: freezed == banner
-          ? _value.banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -134,16 +134,16 @@ abstract class _$$_GithubProjectCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String owner,
-      String repo,
+      {String? banner,
       String? description,
-      int stars,
-      DateTime lastCommit,
       String? homepage,
+      int id,
       String? language,
-      String? banner});
+      DateTime? lastCommit,
+      String name,
+      String? owner,
+      String? repo,
+      int stars});
 }
 
 /// @nodoc
@@ -157,58 +157,58 @@ class __$$_GithubProjectCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? owner = null,
-    Object? repo = null,
-    Object? description = freezed,
-    Object? stars = null,
-    Object? lastCommit = null,
-    Object? homepage = freezed,
-    Object? language = freezed,
     Object? banner = freezed,
+    Object? description = freezed,
+    Object? homepage = freezed,
+    Object? id = null,
+    Object? language = freezed,
+    Object? lastCommit = freezed,
+    Object? name = null,
+    Object? owner = freezed,
+    Object? repo = freezed,
+    Object? stars = null,
   }) {
     return _then(_$_GithubProject(
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homepage: freezed == homepage
+          ? _value.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastCommit: freezed == lastCommit
+          ? _value.lastCommit
+          : lastCommit // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: null == owner
+      owner: freezed == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
-              as String,
-      repo: null == repo
+              as String?,
+      repo: freezed == repo
           ? _value.repo
           : repo // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       stars: null == stars
           ? _value.stars
           : stars // ignore: cast_nullable_to_non_nullable
               as int,
-      lastCommit: null == lastCommit
-          ? _value.lastCommit
-          : lastCommit // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      homepage: freezed == homepage
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      banner: freezed == banner
-          ? _value.banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -217,45 +217,45 @@ class __$$_GithubProjectCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GithubProject extends _GithubProject {
   const _$_GithubProject(
-      {required this.id,
+      {this.banner,
+      this.description,
+      this.homepage,
+      required this.id,
+      this.language,
+      this.lastCommit,
       required this.name,
-      required this.owner,
-      required this.repo,
-      required this.description,
-      required this.stars,
-      required this.lastCommit,
-      required this.homepage,
-      required this.language,
-      required this.banner})
+      this.owner,
+      this.repo,
+      required this.stars})
       : super._();
 
   factory _$_GithubProject.fromJson(Map<String, dynamic> json) =>
       _$$_GithubProjectFromJson(json);
 
   @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final String owner;
-  @override
-  final String repo;
+  final String? banner;
   @override
   final String? description;
   @override
-  final int stars;
-  @override
-  final DateTime lastCommit;
-  @override
   final String? homepage;
+  @override
+  final int id;
   @override
   final String? language;
   @override
-  final String? banner;
+  final DateTime? lastCommit;
+  @override
+  final String name;
+  @override
+  final String? owner;
+  @override
+  final String? repo;
+  @override
+  final int stars;
 
   @override
   String toString() {
-    return 'GithubProject(id: $id, name: $name, owner: $owner, repo: $repo, description: $description, stars: $stars, lastCommit: $lastCommit, homepage: $homepage, language: $language, banner: $banner)';
+    return 'GithubProject(banner: $banner, description: $description, homepage: $homepage, id: $id, language: $language, lastCommit: $lastCommit, name: $name, owner: $owner, repo: $repo, stars: $stars)';
   }
 
   @override
@@ -263,26 +263,26 @@ class _$_GithubProject extends _GithubProject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GithubProject &&
+            (identical(other.banner, banner) || other.banner == banner) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.homepage, homepage) ||
+                other.homepage == homepage) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.lastCommit, lastCommit) ||
+                other.lastCommit == lastCommit) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.owner, owner) || other.owner == owner) &&
             (identical(other.repo, repo) || other.repo == repo) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.stars, stars) || other.stars == stars) &&
-            (identical(other.lastCommit, lastCommit) ||
-                other.lastCommit == lastCommit) &&
-            (identical(other.homepage, homepage) ||
-                other.homepage == homepage) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.banner, banner) || other.banner == banner));
+            (identical(other.stars, stars) || other.stars == stars));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, owner, repo,
-      description, stars, lastCommit, homepage, language, banner);
+  int get hashCode => Object.hash(runtimeType, banner, description, homepage,
+      id, language, lastCommit, name, owner, repo, stars);
 
   @JsonKey(ignore: true)
   @override
@@ -300,41 +300,41 @@ class _$_GithubProject extends _GithubProject {
 
 abstract class _GithubProject extends GithubProject {
   const factory _GithubProject(
-      {required final int id,
+      {final String? banner,
+      final String? description,
+      final String? homepage,
+      required final int id,
+      final String? language,
+      final DateTime? lastCommit,
       required final String name,
-      required final String owner,
-      required final String repo,
-      required final String? description,
-      required final int stars,
-      required final DateTime lastCommit,
-      required final String? homepage,
-      required final String? language,
-      required final String? banner}) = _$_GithubProject;
+      final String? owner,
+      final String? repo,
+      required final int stars}) = _$_GithubProject;
   const _GithubProject._() : super._();
 
   factory _GithubProject.fromJson(Map<String, dynamic> json) =
       _$_GithubProject.fromJson;
 
   @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String get owner;
-  @override
-  String get repo;
+  String? get banner;
   @override
   String? get description;
   @override
-  int get stars;
-  @override
-  DateTime get lastCommit;
-  @override
   String? get homepage;
+  @override
+  int get id;
   @override
   String? get language;
   @override
-  String? get banner;
+  DateTime? get lastCommit;
+  @override
+  String get name;
+  @override
+  String? get owner;
+  @override
+  String? get repo;
+  @override
+  int get stars;
   @override
   @JsonKey(ignore: true)
   _$$_GithubProjectCopyWith<_$_GithubProject> get copyWith =>

@@ -1,10 +1,10 @@
 import 'package:boxy/boxy.dart';
 import 'package:clynamic/app/banner.dart';
 import 'package:clynamic/app/info.dart';
+import 'package:clynamic/client/models/user.dart';
 import 'package:clynamic/user/clipboard.dart';
 import 'package:clynamic/user/gravatar.dart';
 import 'package:clynamic/user/quotes.dart';
-import 'package:clynamic/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';

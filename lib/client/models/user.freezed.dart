@@ -20,13 +20,13 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String? get pronouns => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get discord => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String? get github => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String? get pronouns => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,13 +39,13 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String? pronouns,
-      String? bio,
+      {String? bio,
       String? discord,
-      String? github});
+      String email,
+      String? github,
+      int id,
+      String name,
+      String? pronouns});
 }
 
 /// @nodoc
@@ -61,31 +61,15 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? email = null,
-    Object? pronouns = freezed,
     Object? bio = freezed,
     Object? discord = freezed,
+    Object? email = null,
     Object? github = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? pronouns = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      pronouns: freezed == pronouns
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -94,9 +78,25 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.discord
           : discord // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       github: freezed == github
           ? _value.github
           : github // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      pronouns: freezed == pronouns
+          ? _value.pronouns
+          : pronouns // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -109,13 +109,13 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String email,
-      String? pronouns,
-      String? bio,
+      {String? bio,
       String? discord,
-      String? github});
+      String email,
+      String? github,
+      int id,
+      String name,
+      String? pronouns});
 }
 
 /// @nodoc
@@ -127,31 +127,15 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? email = null,
-    Object? pronouns = freezed,
     Object? bio = freezed,
     Object? discord = freezed,
+    Object? email = null,
     Object? github = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? pronouns = freezed,
   }) {
     return _then(_$_User(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      pronouns: freezed == pronouns
-          ? _value.pronouns
-          : pronouns // ignore: cast_nullable_to_non_nullable
-              as String?,
       bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -160,9 +144,25 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.discord
           : discord // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       github: freezed == github
           ? _value.github
           : github // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      pronouns: freezed == pronouns
+          ? _value.pronouns
+          : pronouns // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -172,34 +172,34 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {required this.id,
-      required this.name,
+      {this.bio,
+      this.discord,
       required this.email,
-      required this.pronouns,
-      required this.bio,
-      required this.discord,
-      required this.github});
+      this.github,
+      required this.id,
+      required this.name,
+      this.pronouns});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final String name;
-  @override
-  final String email;
-  @override
-  final String? pronouns;
   @override
   final String? bio;
   @override
   final String? discord;
   @override
+  final String email;
+  @override
   final String? github;
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String? pronouns;
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email, pronouns: $pronouns, bio: $bio, discord: $discord, github: $github)';
+    return 'User(bio: $bio, discord: $discord, email: $email, github: $github, id: $id, name: $name, pronouns: $pronouns)';
   }
 
   @override
@@ -207,20 +207,20 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.pronouns, pronouns) ||
-                other.pronouns == pronouns) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.discord, discord) || other.discord == discord) &&
-            (identical(other.github, github) || other.github == github));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.github, github) || other.github == github) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.pronouns, pronouns) ||
+                other.pronouns == pronouns));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, email, pronouns, bio, discord, github);
+      Object.hash(runtimeType, bio, discord, email, github, id, name, pronouns);
 
   @JsonKey(ignore: true)
   @override
@@ -238,30 +238,30 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final int id,
-      required final String name,
+      {final String? bio,
+      final String? discord,
       required final String email,
-      required final String? pronouns,
-      required final String? bio,
-      required final String? discord,
-      required final String? github}) = _$_User;
+      final String? github,
+      required final int id,
+      required final String name,
+      final String? pronouns}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
-  @override
-  int get id;
-  @override
-  String get name;
-  @override
-  String get email;
-  @override
-  String? get pronouns;
   @override
   String? get bio;
   @override
   String? get discord;
   @override
+  String get email;
+  @override
   String? get github;
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String? get pronouns;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'project.dart';
+part of 'github_project.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,33 +8,30 @@ part of 'project.dart';
 
 _$_GithubProject _$$_GithubProjectFromJson(Map<String, dynamic> json) =>
     _$_GithubProject(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      owner: json['owner'] as String,
-      repo: json['repo'] as String,
-      description: json['description'] as String?,
-      stars: json['stars'] as int,
-      lastCommit: DateTime.parse(json['lastCommit'] as String),
-      homepage: json['homepage'] as String?,
-      language: json['language'] as String?,
       banner: json['banner'] as String?,
+      description: json['description'] as String?,
+      homepage: json['homepage'] as String?,
+      id: json['id'] as int,
+      language: json['language'] as String?,
+      lastCommit: json['lastCommit'] == null
+          ? null
+          : DateTime.parse(json['lastCommit'] as String),
+      name: json['name'] as String,
+      owner: json['owner'] as String?,
+      repo: json['repo'] as String?,
+      stars: json['stars'] as int,
     );
 
 Map<String, dynamic> _$$_GithubProjectToJson(_$_GithubProject instance) =>
     <String, dynamic>{
-      'type': _$ProjectTypeEnumMap[instance.type]!,
+      'banner': instance.banner,
+      'description': instance.description,
+      'homepage': instance.homepage,
       'id': instance.id,
+      'language': instance.language,
+      'lastCommit': instance.lastCommit?.toIso8601String(),
       'name': instance.name,
       'owner': instance.owner,
       'repo': instance.repo,
-      'description': instance.description,
       'stars': instance.stars,
-      'lastCommit': instance.lastCommit.toIso8601String(),
-      'homepage': instance.homepage,
-      'language': instance.language,
-      'banner': instance.banner,
     };
-
-const _$ProjectTypeEnumMap = {
-  ProjectType.github: 'github',
-};

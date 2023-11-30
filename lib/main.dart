@@ -1,12 +1,12 @@
 import 'package:clynamic/app/alert.dart';
-import 'package:clynamic/app/client.dart';
 import 'package:clynamic/app/errors.dart';
 import 'package:clynamic/app/info.dart';
 import 'package:clynamic/app/layout.dart';
-import 'package:clynamic/project/project.dart';
+import 'package:clynamic/app/provider.dart';
+import 'package:clynamic/client/api.dart';
 import 'package:clynamic/project/tile.dart';
 import 'package:clynamic/user/profile.dart';
-import 'package:clynamic/user/user.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -23,8 +23,24 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  RestClient client = RestClient(
+    Dio(
+      BaseOptions(
+        baseUrl: 'http://localhost:8080/',
+        headers: {
+          'User-Agent': 'lorelense/1.0.0+1',
+        },
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +69,7 @@ class App extends StatelessWidget {
         ),
       ),
       builder: (context, child) => ClientProvider(
+        client: client,
         child: Alerts(
           key: _alerts,
           child: child!,
@@ -98,26 +115,26 @@ class _HomeState extends State<Home> {
         lastCommit: DateTime.now(),
         homepage: 'https://example.com',
         language: 'Dart',
-        banner: null,
       ),
   ];
 
   @override
   void initState() {
     super.initState();
-    Client client = ClientProvider.of(context);
-    _user = client.user(1);
-    _user!.then((value) => value, onError: (error, trace) {
-      if (error is! ClientException) {
-        throw error;
-      }
-    });
-    _projects = client.projects(page: 1, user: 1);
-    _projects!.then((value) => value, onError: (error, trace) {
-      if (error is! ClientException) {
-        throw error;
-      }
-    });
+    load();
+  }
+
+  Future<void> load() async {
+    AlertState alerts = Alerts.of(context);
+    RestClient client = ClientProvider.read(context);
+    _user = client.users.getUsersId(id: 1);
+    _projects = client.projects.getProjects(page: 1, user: 1);
+    try {
+      await _user;
+      await _projects;
+    } on DioException catch (e) {
+      alerts.add(Alert.error(message: Text(e.message ?? 'Unknown error')));
+    }
   }
 
   @override

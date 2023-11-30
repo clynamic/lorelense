@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clynamic/app/banner.dart';
+import 'package:clynamic/client/models/github_project.dart';
+import 'package:clynamic/client/models/project.dart';
 import 'package:clynamic/project/github.dart';
-import 'package:clynamic/project/project.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -24,6 +25,7 @@ class ProjectTile extends StatelessWidget {
             GithubProject() => GithubProjectTile(
                 project: project as GithubProject,
               ),
+            _ => throw UnimplementedError(),
           },
         ),
       ),

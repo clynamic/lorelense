@@ -1,4 +1,4 @@
-import 'package:clynamic/project/project.dart';
+import 'package:clynamic/client/models/github_project.dart';
 import 'package:clynamic/project/tile.dart';
 import 'package:flutter/material.dart';
 import 'package:relative_time/relative_time.dart';
@@ -80,7 +80,7 @@ class GithubProjectDescription extends StatelessWidget {
                 label: Text('${project.stars} stars'),
                 icon: const Icon(Icons.star),
               ),
-              if (project.lastCommit case final lastCommit)
+              if (project.lastCommit case final lastCommit?)
                 ProjectProperty(
                   label: Text(
                     RelativeTime.locale(const Locale('en')).format(lastCommit),
