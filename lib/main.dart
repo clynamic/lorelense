@@ -1,5 +1,6 @@
 import 'package:clynamic/app/alert.dart';
 import 'package:clynamic/app/errors.dart';
+import 'package:clynamic/app/fake.dart';
 import 'package:clynamic/app/info.dart';
 import 'package:clynamic/app/layout.dart';
 import 'package:clynamic/app/provider.dart';
@@ -91,33 +92,6 @@ class _HomeState extends State<Home> {
   Future<User>? _user;
   Future<List<Project>>? _projects;
 
-  final User _mockUser = const User(
-    id: 1,
-    name: 'John Doe',
-    email: 'john.doe@mail.com',
-    pronouns: 'he/him',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-        'Sed vitae eros quis nisl aliquam aliquet. '
-        'Sed euism',
-    discord: 'johndoe#1234',
-    github: 'johndoe',
-  );
-
-  final List<Project> _mockProjects = [
-    for (int i = 0; i < 3; i++)
-      GithubProject(
-        id: i,
-        name: 'Project $i',
-        owner: 'johndoe',
-        repo: 'johndoe/project-$i',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        stars: i * 100,
-        lastCommit: DateTime.now(),
-        homepage: 'https://example.com',
-        language: 'Dart',
-      ),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -143,13 +117,13 @@ class _HomeState extends State<Home> {
     return FutureBuilder(
       future: _user,
       builder: (context, userSnapshot) {
-        User user = userSnapshot.data ?? _mockUser;
+        User user = userSnapshot.data ?? mockUser;
         bool userIsReady = userSnapshot.connectionState == ConnectionState.done;
         bool userError = userSnapshot.hasError;
         return FutureBuilder(
           future: _projects,
           builder: (context, projectsSnapshot) {
-            List<Project> projects = projectsSnapshot.data ?? _mockProjects;
+            List<Project> projects = projectsSnapshot.data ?? mockProjects;
             bool projectsAreReady =
                 projectsSnapshot.connectionState == ConnectionState.done &&
                     projectsSnapshot.hasData;
