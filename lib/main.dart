@@ -1,15 +1,18 @@
+import 'dart:io';
+
 import 'package:clynamic/app/alert.dart';
+import 'package:clynamic/app/env.dart';
 import 'package:clynamic/app/errors.dart';
 import 'package:clynamic/app/home.dart';
 import 'package:clynamic/app/provider.dart';
 import 'package:clynamic/client/api.dart';
 import 'package:dio/dio.dart';
-import 'package:dotenv/dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void main() {
+Future<void> main() async {
   setPathUrlStrategy();
+  await Environment.initialize();
   runApp(const App());
 }
 
@@ -34,14 +37,12 @@ class _AppState extends State<App> {
       ),
     );
 
-    DotEnv env = DotEnv();
-    env.load();
     client = RestClient(
       Dio(
         BaseOptions(
-          baseUrl: env.getOrElse('API_URL', () => defaultHost),
+          baseUrl: Environment.instance.apiUrl ?? defaultHost,
           headers: {
-            'User-Agent': 'lorelense/1.0.0+1',
+            HttpHeaders.userAgentHeader: 'lorelense/1.0.0+1',
           },
         ),
       ),
