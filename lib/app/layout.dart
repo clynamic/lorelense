@@ -28,12 +28,7 @@ class TwoPieceLayout extends StatelessWidget {
 
         if (isCombined) {
           left.addAll([
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...primary,
-              ],
-            ),
+            ...primary,
             ...secondary,
           ]);
         } else {
