@@ -102,7 +102,7 @@ class GithubProjectDescription extends StatelessWidget {
             if (project.homepage case final homepage?)
               ProjectProperty(
                 label: Text(Uri.parse(homepage).host),
-                icon: const Icon(Icons.link),
+                icon: const Icon(Icons.public),
               ),
             if (project.language case final language?)
               ProjectProperty(
