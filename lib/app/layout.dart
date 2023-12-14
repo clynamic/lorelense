@@ -28,7 +28,11 @@ class TwoPieceLayout extends StatelessWidget {
 
         if (isCombined) {
           left.addAll([
-            ...primary,
+            Row(
+              children: [
+                ...primary,
+              ],
+            ),
             ...secondary,
           ]);
         } else {
