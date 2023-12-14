@@ -252,16 +252,18 @@ class _AlertDisplayState extends State<_AlertDisplay>
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: AnimatedList(
-            primary: false,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.all(8),
-            key: widget.listKey,
-            initialItemCount: widget.alerts.length,
-            itemBuilder: widget.itemBuilder,
+        Flexible(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: AnimatedList(
+              primary: false,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(8),
+              key: widget.listKey,
+              initialItemCount: widget.alerts.length,
+              itemBuilder: widget.itemBuilder,
+            ),
           ),
         ),
       ],
