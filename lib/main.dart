@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:clynamic/app/alert.dart';
 import 'package:clynamic/app/env.dart';
 import 'package:clynamic/app/errors.dart';
@@ -41,9 +39,6 @@ class _AppState extends State<App> {
       Dio(
         BaseOptions(
           baseUrl: Environment.instance.apiUrl ?? defaultHost,
-          headers: {
-            HttpHeaders.userAgentHeader: 'lorelense/1.0.0+1',
-          },
         ),
       ),
     );
