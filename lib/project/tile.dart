@@ -75,7 +75,7 @@ class ProjectProperty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       child: DefaultTextStyle(
         style: Theme.of(context).textTheme.bodySmall!,
         child: IconTheme(
