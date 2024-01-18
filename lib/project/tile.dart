@@ -17,16 +17,19 @@ class ProjectTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
-        width: 400,
-        child: Card(
-          clipBehavior: Clip.antiAlias,
-          child: switch (project) {
-            GithubProject() => GithubProjectTile(
-                project: project as GithubProject,
-              ),
-            _ => throw UnimplementedError(),
-          },
+      child: Padding(
+        padding: const EdgeInsets.all(4),
+        child: SizedBox(
+          width: 400,
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: switch (project) {
+              GithubProject() => GithubProjectTile(
+                  project: project as GithubProject,
+                ),
+              _ => throw UnimplementedError(),
+            },
+          ),
         ),
       ),
     );
