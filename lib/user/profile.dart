@@ -22,6 +22,7 @@ class Profile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 4),
         ProfileHead(user: user),
         const SizedBox(height: 12),
         SelectionArea(

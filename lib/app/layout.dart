@@ -28,11 +28,7 @@ class TwoPieceLayout extends StatelessWidget {
 
         if (isCombined) {
           left.addAll([
-            Row(
-              children: [
-                ...primary,
-              ],
-            ),
+            ...primary,
             ...secondary,
           ]);
         } else {
@@ -41,6 +37,7 @@ class TwoPieceLayout extends StatelessWidget {
             IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 32),
@@ -56,21 +53,17 @@ class TwoPieceLayout extends StatelessWidget {
         return _TwoPieceLayoutData(
           isCombined: isCombined,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: left,
-                ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: left,
               ),
               if (right.isNotEmpty)
-                SizedBox(
-                  width: constraints.maxWidth > 1400 ? 600 : 420,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: right,
-                  ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: right,
                 ),
             ],
           ),

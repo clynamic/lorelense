@@ -94,9 +94,10 @@ class _HomeState extends State<Home> {
                               ),
                             )
                           else
-                            Expanded(
-                              child: Skeletonizer(
-                                enabled: !userIsReady,
+                            Skeletonizer(
+                              enabled: !userIsReady,
+                              child: SizedBox(
+                                width: 420,
                                 child: Profile(user: user),
                               ),
                             ),
