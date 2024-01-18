@@ -58,11 +58,13 @@ class TwoPieceLayout extends StatelessWidget {
             children: [
               Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: left,
               ),
               if (right.isNotEmpty)
                 Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: right,
                 ),
             ],

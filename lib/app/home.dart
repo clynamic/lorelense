@@ -106,17 +106,11 @@ class _HomeState extends State<Home> {
                           Builder(builder: (context) {
                             if (TwoPieceLayout.isCombined(context)) {
                               return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Projects',
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                    ),
-                                  ],
+                                padding: const EdgeInsets.all(16),
+                                child: Text(
+                                  'Projects',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
                                 ),
                               );
                             } else {
