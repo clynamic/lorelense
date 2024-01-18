@@ -105,13 +105,19 @@ class _HomeState extends State<Home> {
                         secondary: [
                           Builder(builder: (context) {
                             if (TwoPieceLayout.isCombined(context)) {
-                              return Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: Text(
-                                  'Projects',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
-                                ),
+                              return Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ),
+                                    child: Text(
+                                      'Projects',
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                  ),
+                                ],
                               );
                             } else {
                               return const SizedBox();
