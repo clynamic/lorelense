@@ -1,7 +1,7 @@
 import 'package:boxy/boxy.dart';
+import 'package:clynamic/api/api.dart';
 import 'package:clynamic/app/banner.dart';
 import 'package:clynamic/app/info.dart';
-import 'package:clynamic/client/models/user.dart';
 import 'package:clynamic/user/clipboard.dart';
 import 'package:clynamic/user/gravatar.dart';
 import 'package:clynamic/user/quotes.dart';

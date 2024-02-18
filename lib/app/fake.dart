@@ -1,6 +1,4 @@
-import 'package:clynamic/client/models/github_project.dart';
-import 'package:clynamic/client/models/project.dart';
-import 'package:clynamic/client/models/user.dart';
+import 'package:clynamic/api/api.dart';
 
 const User mockUser = User(
   id: 1,
@@ -16,15 +14,14 @@ const User mockUser = User(
 
 final List<Project> mockProjects = [
   for (int i = 0; i < 3; i++)
-    GithubProject(
+    Project(
       id: i,
       name: 'Project $i',
-      owner: 'johndoe',
-      repo: 'johndoe/project-$i',
+      source: 'https://johndoe/project-$i',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       stars: i * 100,
-      lastCommit: DateTime.now(),
-      homepage: 'https://example.com',
+      updated: DateTime.now(),
+      website: 'https://example.com',
       language: 'Dart',
     ),
 ];

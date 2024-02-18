@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clynamic/api/api.dart';
 import 'package:clynamic/app/banner.dart';
-import 'package:clynamic/client/models/github_project.dart';
-import 'package:clynamic/client/models/project.dart';
-import 'package:clynamic/project/github.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_context_menu/flutter_context_menu.dart';
+import 'package:relative_time/relative_time.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ProjectTile extends StatelessWidget {
   const ProjectTile({
@@ -23,12 +24,30 @@ class ProjectTile extends StatelessWidget {
           width: 400,
           child: Card(
             clipBehavior: Clip.antiAlias,
-            child: switch (project) {
-              GithubProject() => GithubProjectTile(
-                  project: project as GithubProject,
-                ),
-              _ => throw UnimplementedError(),
-            },
+            child: InkWell(
+              onTap: () => launchUrlString(project.source),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ProjectBanner(url: project.banner),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          project.name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 8),
+                        ProjectDescription(project: project),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -92,6 +111,101 @@ class ProjectProperty extends StatelessWidget {
               label,
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProjectDescription extends StatelessWidget {
+  const ProjectDescription({
+    super.key,
+    required this.project,
+  });
+
+  final Project project;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (project.description case final description?)
+          Text(
+            description,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        const SizedBox(height: 8),
+        Wrap(
+          children: [
+            if (project.website case final website?)
+              InkWell(
+                borderRadius: BorderRadius.circular(4),
+                onTap: () => launchUrlString(website),
+                child: ProjectProperty(
+                  label: Text(Uri.parse(website).host),
+                  icon: const Icon(Icons.public),
+                ),
+              ),
+            if (project.language case final language?)
+              ProjectProperty(
+                label: Text(language),
+                icon: const Icon(Icons.code),
+              ),
+            ...[
+              ProjectProperty(
+                label: Text('${project.stars} stars'),
+                icon: const Icon(Icons.star),
+              ),
+              if (project.updated case final updated?)
+                ProjectProperty(
+                  label: Text(
+                    RelativeTime.locale(const Locale('en')).format(updated),
+                  ),
+                  icon: const Icon(Icons.access_time),
+                ),
+            ],
+          ],
+        )
+      ],
+    );
+  }
+}
+
+final class ListTileMenuItem<T> extends ContextMenuItem<T> {
+  const ListTileMenuItem({
+    super.value,
+    super.onSelected,
+    this.leading,
+    required this.title,
+  });
+
+  const ListTileMenuItem.submenu({
+    this.leading,
+    required this.title,
+    required List<ContextMenuEntry> super.items,
+    super.onSelected,
+  }) : super.submenu();
+
+  final Widget? leading;
+  final Widget title;
+
+  @override
+  Widget builder(
+    BuildContext context,
+    ContextMenuState menuState, [
+    FocusNode? focusNode,
+  ]) {
+    return Material(
+      type: MaterialType.transparency,
+      child: SizedBox(
+        width: 300,
+        child: ListTile(
+          leading: leading,
+          title: title,
+          trailing: isSubmenuItem ? const Icon(Icons.arrow_right) : null,
+          onTap: () => handleItemSelection(context),
         ),
       ),
     );

@@ -2,14 +2,10 @@
 swagger_parser:
   # Make sure that the server is running.
   # schema_path: api.json
-  schema_url: http://127.0.0.1:8080/swagger-ui/api.json
+  schema_url: http://127.0.0.1:6001/swagger-ui/api.json
 
-  output_directory: lib/client
+  output_directory: lib/api
 
   freezed: true
-
   unknown_enum_value: false
-
-  replacement_rules:
-    - pattern: "[0-9]+"
-      replacement: ""
+  required_by_default: false

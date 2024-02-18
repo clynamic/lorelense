@@ -1,4 +1,4 @@
-import 'package:clynamic/client/api.dart';
+import 'package:clynamic/api/api.dart';
 import 'package:flutter/material.dart';
 
 class ClientProvider extends InheritedWidget {

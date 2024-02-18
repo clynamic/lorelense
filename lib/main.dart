@@ -1,9 +1,9 @@
+import 'package:clynamic/api/api.dart';
 import 'package:clynamic/app/alert.dart';
 import 'package:clynamic/app/env.dart';
 import 'package:clynamic/app/errors.dart';
 import 'package:clynamic/app/home.dart';
 import 'package:clynamic/app/provider.dart';
-import 'package:clynamic/client/api.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';

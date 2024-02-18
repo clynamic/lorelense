@@ -1,11 +1,9 @@
+import 'package:clynamic/api/api.dart';
 import 'package:clynamic/app/alert.dart';
 import 'package:clynamic/app/fake.dart';
 import 'package:clynamic/app/info.dart';
 import 'package:clynamic/app/layout.dart';
 import 'package:clynamic/app/provider.dart';
-import 'package:clynamic/client/models/project.dart';
-import 'package:clynamic/client/models/user.dart';
-import 'package:clynamic/client/rest_client.dart';
 import 'package:clynamic/project/tile.dart';
 import 'package:clynamic/user/profile.dart';
 import 'package:dio/dio.dart';
@@ -32,8 +30,8 @@ class _HomeState extends State<Home> {
   Future<void> load() async {
     AlertState alerts = Alerts.of(context);
     RestClient client = ClientProvider.read(context);
-    _user = client.users.getUsersId(id: 1);
-    _projects = client.projects.getProjects(page: 1, user: 1);
+    _user = client.users.user(id: 1);
+    _projects = client.projects.projects(page: 1, user: 1);
     try {
       await _user;
       await _projects;
